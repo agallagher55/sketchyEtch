@@ -45,16 +45,66 @@ function changeBackground (element, color) {
     })
 }
 
-// Choose Color
-colorChoice = prompt("Choose your color");
+// Choose Color - Default to black
+let colorChoice = prompt("Choose your color: ");
+if (colorChoice == null || colorChoice == '') {
+    console.log(`NULL FOUND - Defaulting color to: black`)
+    colorChoice = 'black'}
+else {console.log(`Color is: ${colorChoice}`)};
+
 grids_list.forEach((grid) => {
     changeBackground(grid, colorChoice)
 })
 
+// Change Grid Size
+resizeBtn = document.querySelector("#gridSize");
+
+// init prompt, get height and width --> init createGrid function
+function resizeGrid (){
+    console.log("ENTERING RESIZE FUNCTION")
+
+    let rows = prompt("Please enter number of rows, bitch: ");
+    let columns = prompt("Please enter the number of columns, bitch: ");
+
+    console.log("rows n cols...")
+    // console.log(grids_list)
+
+    let grids = document.querySelectorAll('.grid-div')
+    let grids_list = Array.from(grids)
+
+    // clear divs with 
+    grids_list.forEach((grid) => {
+        // master_div.parentNode.removeChild(grid)
+        grid.parentNode.removeChild(grid)
+    });
+
+    console.log("CreateGrid function...")
+    createGrid(rows, columns);
+
+    // Choose Color - Default to black
+    let colorChoice = prompt("Choose your color: ");
+    if (colorChoice == null || colorChoice == '') {
+        console.log(`NULL FOUND - Defaulting color to: black`)
+        colorChoice = 'black'
+    }
+    else {console.log(`Color is: ${colorChoice}`)};
+
+    grids = document.querySelectorAll('.grid-div')
+    grids_list = Array.from(grids)
+    grids_list.forEach((grid) => {
+        changeBackground(grid, colorChoice)
+    });
+};
+
+resizeBtn.addEventListener("click", resizeGrid);
+
+// const grids = document.querySelectorAll('.grid-div')
+// const grids_list = Array.from(grids)
+
 // Clear Screen
 clrBtn = document.querySelector('#clear')
 clrBtn.addEventListener("click", (e) => {
-    grids_list.forEach((grid) => {
+    Array.from(document.querySelectorAll('.grid-div')).forEach((grid) => {
         grid.style.backgroundColor = ''
     })
 });
