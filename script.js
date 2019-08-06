@@ -63,8 +63,8 @@ resizeBtn = document.querySelector("#gridSize");
 function resizeGrid (){
     console.log("ENTERING RESIZE FUNCTION")
 
-    let rows = prompt("Please enter number of rows, bitch: ");
-    let columns = prompt("Please enter the number of columns, bitch: ");
+    let rows = prompt("Please enter number of rows: ");
+    let columns = prompt("Please enter the number of columns: ");
 
     console.log("rows n cols...")
     // console.log(grids_list)
